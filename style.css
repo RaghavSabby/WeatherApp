@@ -3,6 +3,17 @@
     margin: 0;
 }
 
+:root {
+    --light-blue: #0F3460;
+    --dark-blue: #16213E;
+    --text-grey: #C8C6C6;
+
+    --font-small: .5rem;
+    --font-medium: 1rem;
+    --font-large: 2rem;
+    --font-xl: 4rem;
+}
+
 body {
     font-family: "Poppins", sans-serif;
 }
@@ -31,34 +42,167 @@ main.container {
     grid-area: current;
     text-align: center;
     padding: 30px 20px;
+    background-color: var(--light-blue);
 }
 
 #current-forecast .current-forecast-icon {
-    margin: 25px;
+    height: 175px;
+    width: 175px;
 }
 
 #current-forecast .current-temp {
     margin: 25px;
+    font-size: var(--font-xl);
+    color: white;
+}
+
+#current-forecast .current-temp .temp-unit {
+    font-size: var(--font-large);
+    color: var(--text-grey);
+    font-weight: 400;
 }
 
 #current-forecast .description {
     margin: 25px;
+    text-transform: capitalize;
+    color: var(--text-grey);
 }
 
 #current-forecast .day-and-date {
     margin: 25px;
+    color: var(--text-grey);
+}
+
+#current-forecast .today {
+    margin-right: 27px;
+}
+
+#current-forecast .date {
+    margin-left: 22px;
 }
 
 #current-forecast .location {
     margin: 25px;
+    color: var(--text-grey);
 }
 
+p.location {
+    font-size: var(--font-medium);
+}
+
+.location i {
+    margin-right: 12px;
+}
+
+/* Five Day Styles */
 #five-day-forecast {
     grid-area: day-wise;
+    background-color: var(--dark-blue);
+    display: grid;
+    grid-template-columns: repeat(2, minmax(50px, 1fr));
+    row-gap: 25px;
+    column-gap: 20px;
+    padding: 35px;
 }
 
+#five-day-forecast > article {
+    background-color: var(--light-blue);
+    text-align: center;
+}
+
+/* Today's Highlight Styles */
 #today-highlight {
     grid-area: highlight;
+    background-color: var(--dark-blue);
+    display: grid;
+    grid-template-columns: repeat(autofill, minmax(60px, 1fr));
+    grid-template-areas: "heading heading"
+                        "wind wind"
+                        "wind wind"
+                        "humidity humidity"
+                        "humidity humidity"
+                        "feel feel"
+                        "feel feel"
+                        "visibility visibility"
+                        "visibility visibility"
+                        "pressure pressure"
+                        "pressure pressure";
+    row-gap: 25px;
+    padding: 15px 20px 30px;
+}
+
+#today-highlight .heading {
+    display: inline;
+    grid-area: heading;
+    color: white;
+    font-size: calc(var(--font-medium)*1.5);
+}
+
+#today-highlight .wind-status{
+    text-align: center;
+    grid-area: wind;
+    background-color: var(--light-blue);
+    padding: 15px;
+    color: white;
+}
+
+#today-highlight .wind-status p, 
+#today-highlight .humidity p, 
+#today-highlight .feels-like p,
+#today-highlight .visibility p,
+#today-highlight .air-pressure p{
+    margin-bottom: 15px;
+    font-size: calc(var(--font-medium)*1.2);
+}
+
+#today-highlight .wind-status h1,
+#today-highlight .humidity h1, 
+#today-highlight .feels-like h1,
+#today-highlight .visibility h1, 
+#today-highlight .air-pressure h1{
+    font-size: var(--font-xl);
+}
+
+#today-highlight .wind-status h1 .wind-unit,
+#today-highlight .humidity h1 .percent, 
+#today-highlight .feels-like .feels-like-unit,
+#today-highlight .visibility .meter, 
+#today-highlight .air-pressure .pressure-unit{
+    font-weight: 200;
+    font-size: var(--font-large);
+}
+
+#today-highlight .humidity {
+    text-align: center;
+    grid-area: humidity;
+    background-color: var(--light-blue);
+    color: white;
+    padding: 15px;
+}
+
+
+#today-highlight .feels-like {
+    text-align: center;
+    grid-area: feel;
+    background-color: var(--light-blue);
+    color: white;
+    padding: 15px;
+}
+
+#today-highlight .visibility {
+    text-align: center;
+    grid-area: visibility;
+    background-color: var(--light-blue);
+    color: white;
+    padding: 15px;
+}
+
+#today-highlight .air-pressure {
+    text-align: center;
+    grid-area: pressure;
+    background-color: var(--light-blue);
+    color: white;
+    padding: 15px;
 }
 
 

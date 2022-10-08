@@ -16,11 +16,11 @@
       href="https://devchallenges.io/"
     />
 
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap"
-      rel="stylesheet"
-    />
-
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;500&display=swap" rel="stylesheet">
+    <!-- CSS -->
     <link rel="stylesheet" href="style.css">
 
     <title>Weather App Mastery</title>
@@ -33,7 +33,7 @@
         <h1 class="current-temp">Temp</h1>
         <h3 class="description">Description</h3>
         <p class="day-and-date">Day / Date</p>
-        <p class="location">Location</p>
+        <p class="location"><i class="fa-solid fa-location-dot fa-xl"></i> Location</p>
       </section>
       <section id="five-day-forecast">
         <article class="day-wise-forecast">
@@ -60,8 +60,15 @@
           <p class="max-temp">High</p>
           <p class="min-temp">Low</p>
         </article>
+        <article class="day-wise-forecast">
+          <h3 class="date">Day / Date</h3>
+          <img src="" alt="" class="day-wise-icon">Icon
+          <p class="max-temp">High</p>
+          <p class="min-temp">Low</p>
+        </article>
       </section>
       <section id="today-highlight">
+        <h1 class="heading">Today's Highlight</h1>
         <article class="wind-status">
           <p>Wind Status</p>
           <h1>7mph</h1>
@@ -85,6 +92,9 @@
         </article>
       </section>
     </main>
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/68129f478c.js" crossorigin="anonymous"></script>
+    <!-- JS -->
     <script src="index.js"></script>
   </body>
 </html>
