@@ -1,0 +1,155 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+}
+
+main.container {
+    max-width: 400px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(100px, 1fr));
+    grid-template-areas: 
+        "current current"
+        "current current"
+        "current current"
+        "day-wise day-wise"
+        "day-wise day-wise"
+        "day-wise day-wise"
+        "highlight highlight"
+        "highlight highlight"
+        "highlight highlight"
+        "highlight highlight"
+        "highlight highlight";
+}
+
+/* Current Forecast style */
+#current-forecast {
+    grid-area: current;
+    text-align: center;
+    padding: 30px 20px;
+}
+
+#current-forecast .current-forecast-icon {
+    margin: 25px;
+}
+
+#current-forecast .current-temp {
+    margin: 25px;
+}
+
+#current-forecast .description {
+    margin: 25px;
+}
+
+#current-forecast .day-and-date {
+    margin: 25px;
+}
+
+#current-forecast .location {
+    margin: 25px;
+}
+
+#five-day-forecast {
+    grid-area: day-wise;
+}
+
+#today-highlight {
+    grid-area: highlight;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ul {
+    padding-left: 24px;
+}
+
+li {
+    margin-bottom: 8px;
+}
+
+.welcome {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.welcome-text {
+    margin-top: 30vh;
+    font-weight: 500;
+}
+
+.welcome-text p {
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+.welcome-text h1 {
+    font-size: 1.5rem;
+}
+
+.welcome-text a {
+    color: #f7542e;
+} */
