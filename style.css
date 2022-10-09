@@ -7,6 +7,7 @@
     --light-blue: #0F3460;
     --dark-blue: #16213E;
     --text-grey: #C8C6C6;
+    --yellow: #FFDE00;
 
     --font-small: .5rem;
     --font-medium: 1rem;
@@ -100,14 +101,43 @@ p.location {
     background-color: var(--dark-blue);
     display: grid;
     grid-template-columns: repeat(2, minmax(50px, 1fr));
-    row-gap: 25px;
-    column-gap: 20px;
+    row-gap: 22px;
+    column-gap: 17px;
     padding: 35px;
+}
+
+#five-day-forecast h3 {
+    text-transform: capitalize;
+    color: white;
+}
+
+/* #five-day-forecast img {
+} */
+
+#five-day-forecast .max-temp {
+    color: white;
+    font-size: calc(var(--font-medium)*1.2);
+    display: inline;
+    margin-right: 5px;
+}
+
+#five-day-forecast .min-temp {
+    color: var(--text-grey);
+    font-size: calc(var(--font-medium)*1.2);
+    display: inline;
+    margin-left: 5px;
 }
 
 #five-day-forecast > article {
     background-color: var(--light-blue);
+    padding: 10px;
     text-align: center;
+}
+
+section.min-max-temps {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 /* Today's Highlight Styles */
@@ -128,7 +158,7 @@ p.location {
                         "pressure pressure"
                         "pressure pressure";
     row-gap: 25px;
-    padding: 15px 20px 30px;
+    padding: 0 20px 30px;
 }
 
 #today-highlight .heading {
@@ -180,6 +210,39 @@ p.location {
     padding: 15px;
 }
 
+/* Humidity Bar */
+.humidity-bar {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+}
+
+.bar-reading {
+    display: flex;
+    justify-content: space-between;
+}
+
+.bar-reading p {
+    margin-bottom: 0 !important;
+}
+
+.bar-container {
+    width: 100%;
+    height: 15px;
+    background-color: var(--text-grey);
+    border-radius: 10px;
+}
+
+.bar-container .bar-progress {
+    height: 15px;
+    border-radius: 10px;
+    background-color: var(--yellow);
+    width: 80%;
+}
+
+.bar-percent {
+    align-self: flex-end;
+}
 
 #today-highlight .feels-like {
     text-align: center;
