@@ -20,7 +20,7 @@ body {
 }
 
 main.container {
-    max-width: 400px;
+    max-width: 100%;
     margin: auto;
     display: grid;
     grid-template-columns: repeat(2, minmax(100px, 1fr));
@@ -158,7 +158,7 @@ section.min-max-temps {
                         "pressure pressure"
                         "pressure pressure";
     row-gap: 25px;
-    padding: 0 20px 30px;
+    padding: 20px 20px 30px;
 }
 
 #today-highlight .heading {
@@ -266,6 +266,36 @@ section.min-max-temps {
     background-color: var(--light-blue);
     color: white;
     padding: 15px;
+}
+
+@media (width >= 450px) {
+    main.container {
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-areas: 
+            "current day-wise day-wise"
+            "current highlight highlight"
+            "current highlight highlight";
+    }
+
+    #five-day-forecast {
+        display: flex;
+        justify-content: flex-start;
+        overflow-x: scroll;
+    }
+
+    #five-day-forecast .max-temp, #five-day-forecast .min-temp {
+        font-size: var(--font-medium);
+    }
+
+    #today-highlight {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-areas: "heading heading"
+                            "wind humidity"
+                            "feel visibility"
+                            "pressure .";
+        gap: 25px;
+    }
+
 }
 
 
