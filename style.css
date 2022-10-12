@@ -8,6 +8,7 @@
     --dark-blue: #16213E;
     --text-grey: #C8C6C6;
     --yellow: #FFDE00;
+    --bright-blue: #139cf7;
 
     --font-small: .5rem;
     --font-medium: 1rem;
@@ -44,6 +45,99 @@ main.container {
     text-align: center;
     padding: 30px 20px;
     background-color: var(--light-blue);
+}
+
+#search-location-opt {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    transition: height 0.8s ease-in-out;
+}
+
+.close-btn {
+    display: flex;
+    justify-content: flex-end;
+    position: relative;
+    bottom: 15px;
+}
+
+button.close-menu {
+    background: var(--light-blue);
+    border: none;
+}
+
+.close-btn i {
+    display: inline;
+    color: white;
+    background: var(--light-blue);
+    border-color: none;
+    cursor: pointer;
+}
+
+#search-location-opt {
+    display: none;
+    padding: 0 12px;
+}
+
+#input-search-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#search-location-opt .input-location {
+    width: 70%;
+    height: 45px;
+    font-family: "Poppins", sans-serif;
+    font-size: var(--font-medium);
+    background-color: inherit;
+    border-color: white;
+    color: white;
+}
+
+#search-location-opt .search-btn {
+    height: 45px;
+    width: 25%;
+    font-family: "Poppins", sans-serif;
+    border: none;
+    background-color: var(--bright-blue);
+    color: white;
+    font-size: var(--font-medium);
+    cursor: pointer;
+}
+
+#buttons {
+    position: relative;
+    bottom: 10px;
+}
+
+#current-forecast #buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+#current-forecast .search-button {
+    font-family: "Poppins", sans-serif;
+    padding: 5px 7px;
+    cursor: pointer;
+    border: none;
+    background: var(--text-grey);
+    font-size: var(--font-medium);
+    color: white;
+}
+
+#current-forecast .current-location {
+    padding: 2px;
+    border-radius: 100%;
+    cursor: pointer;
+    height: 37px;
+    width: 37px;
+    border: none;
+    background: var(--text-grey);
+}
+
+#current-forecast .current-location i {
+    color: white;
 }
 
 #current-forecast .current-forecast-icon {
@@ -277,6 +371,18 @@ section.min-max-temps {
             "current highlight highlight";
     }
 
+    #current-forecast {
+        padding-top: 100px;
+    }
+
+    #buttons {
+        bottom: 80px;
+    }
+
+    .close-btn {
+        bottom: 75px;
+    }
+
     #five-day-forecast {
         display: flex;
         justify-content: flex-start;
@@ -297,96 +403,3 @@ section.min-max-temps {
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* ul {
-    padding-left: 24px;
-}
-
-li {
-    margin-bottom: 8px;
-}
-
-.welcome {
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.welcome-text {
-    margin-top: 30vh;
-    font-weight: 500;
-}
-
-.welcome-text p {
-    font-size: 1rem;
-    font-weight: 400;
-}
-
-.welcome-text h1 {
-    font-size: 1.5rem;
-}
-
-.welcome-text a {
-    color: #f7542e;
-} */

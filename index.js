@@ -96,11 +96,37 @@ function barProgress({main: {humidity}}) {
 document.addEventListener("DOMContentLoaded", async () => {
     const currentWeatherAPIResponse = await currentWeatherAPI();
     console.log(currentWeatherAPIResponse);
+    // Loading Current Forecast
     loadCurrentForecast(currentWeatherAPIResponse);
+    // Loading 5-Day Forecast
     const dayWiseWeatherAPIResponse = await dayWiseWeatherAPI();
     calculateDayWiseForecast(dayWiseWeatherAPIResponse);
     console.log(dayWiseWeatherAPIResponse);
     loadDayWiseForecast(dayWiseWeatherAPIResponse)
+    // Loading Today's Highlight
     loadTodayHighlight(currentWeatherAPIResponse);
+    // Percentage bar
     barProgress(currentWeatherAPIResponse);
+    // For Menu
+    function showMenu() {
+        const menu = document.querySelector("#search-location-opt");
+        const searchBtn = document.querySelector("#buttons");
+        const mainForecast = document.querySelector("#main-content-section");
+        menu.style.height = "100%";
+        menu.style.display = "revert";
+        searchBtn.style.display = "none";
+        mainForecast.style.display = "none";
+    }
+    function closeMenu() {
+        const menu = document.querySelector("#search-location-opt");
+        const searchBtn = document.querySelector("#buttons");
+        const mainForecast = document.querySelector("#main-content-section");
+        menu.style.height = "0";
+        menu.style.display = "none";
+        searchBtn.style.display = "revert";
+        searchBtn.style.display = "flex";
+        mainForecast.style.display = "revert";
+    }
+    document.querySelector("#buttons .search-button").addEventListener("click", showMenu);
+    document.querySelector("#search-location-opt .close-menu").addEventListener("click", closeMenu);
 });
