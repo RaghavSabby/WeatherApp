@@ -3,6 +3,7 @@ const API_KEY = "c6c699b887b177ad49cf408e327724ba";
 const DAYS_OF_THE_WEEK = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
 
 let selectedCity;
+let selectedCityText;
 
 const getCitiesUsingGeoAPI = async (searchInput) => {
     const response = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${searchInput}&limit=5&appid=${API_KEY}`);
@@ -124,9 +125,51 @@ const loadForecastUsingGeoLocation = () => {
     }, error => console.log(error));
 }
 
+function debounce(func) {
+    let timer;
+    return (...args) => {
+        clearTimeout(timer);
+        timer = setTimeout(() => {
+            func.apply(this, args)
+        }, 500);
+    }
+}
+
+const onSearchChange = async (event) => {
+    let { value } = event.target;
+    if (!value) {
+        selectedCity = null;
+        selectedCityText = "";
+    }
+    if (value && (selectedCityText !== value)) {
+        const lisOfCities = await getCitiesUsingGeoAPI(value);
+        let options = "";
+        for (let { lat, lon, name, state, country } of lisOfCities) {
+            options += `<option data-city-details='${JSON.stringify({lat, lon, name})}' value="${name}, ${state}, ${country}"></option>`;
+        }
+        document.querySelector("#cities").innerHTML = options;
+    }
+}
+
+const handleCitySelection = (event) => {
+    selectedCityText = event.target.value;
+    let options = document.querySelectorAll("#cities > option");
+    if (options?.length) {
+        let selectedOption = Array.from(options).find(opt => opt.value === selectedCityText);
+        selectedCity = JSON.parse(selectedOption.getAttribute("data-city-details"));
+        loadData();
+    }
+}
+
+const debounceSearch = debounce((event) => onSearchChange(event))
+
 document.addEventListener("DOMContentLoaded", async () => {
     // Default Location Forecast
     loadForecastUsingGeoLocation();
+    // Search 
+    const searchInput = document.querySelector("#search");
+    searchInput.addEventListener("input", debounceSearch);
+    searchInput.addEventListener("change", handleCitySelection)
     // Getting Default Location Forecast through button click
     const currentLocation = document.querySelector(".current-location");
     currentLocation.addEventListener("click", loadForecastUsingGeoLocation);
@@ -152,4 +195,5 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
     document.querySelector("#buttons .search-button").addEventListener("click", showMenu);
     document.querySelector("#search-location-opt .close-menu").addEventListener("click", closeMenu);
+    document.querySelector(".input-search-section .search-btn").addEventListener("click", closeMenu); 
 });
