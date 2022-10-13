@@ -20,10 +20,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;500&display=swap" rel="stylesheet">
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="images/cloudy.png" type="image/x-icon">
     <!-- CSS -->
     <link rel="stylesheet" href="style.css">
 
-    <title>Weather App Mastery</title>
+    <title>Weather App</title>
 
   </head>
   <body>
@@ -40,7 +42,8 @@
           </section>
           <section class="input-search-section">
             <!-- <i class="fa-solid fa-magnifying-glass fa-xl search-icon"></i> -->
-            <input type="text" class="input-location" placeholder="search location">
+            <input list="cities" type="search" class="input-location" placeholder="search location" id="search" name="search">
+            <datalist id="cities"></datalist>
             <button class="search-btn">Search</button>
           </section>
         </section>

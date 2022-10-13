@@ -2,14 +2,20 @@ const API_KEY = "c6c699b887b177ad49cf408e327724ba";
 
 const DAYS_OF_THE_WEEK = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
 
-const currentWeatherAPI = async () => {
-    let city = "delhi";
-    const reponse = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`);
+let selectedCity;
+
+const getCitiesUsingGeoAPI = async (searchInput) => {
+    const response = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${searchInput}&limit=5&appid=${API_KEY}`);
+    return response.json();
+}
+
+const currentWeatherAPI = async ({lat, lon, name: city}) => {
+    const url = lat && lon ? `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric` : `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`
+    const reponse = await fetch(url);
     return reponse.json();
 }
 
-const dayWiseWeatherAPI = async () => {
-    let city = "delhi";
+const dayWiseWeatherAPI = async ({name: city}) => {
     const response = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${API_KEY}&units=metric`);
     const data = await response.json();
     return data.list.map((forecast) => {
@@ -93,13 +99,13 @@ function barProgress({main: {humidity}}) {
     bar.style.width = `${humidity}%`;
 }
 
-document.addEventListener("DOMContentLoaded", async () => {
-    const currentWeatherAPIResponse = await currentWeatherAPI();
+const loadData = async () => {
+    const currentWeatherAPIResponse = await currentWeatherAPI(selectedCity);
     console.log(currentWeatherAPIResponse);
     // Loading Current Forecast
     loadCurrentForecast(currentWeatherAPIResponse);
     // Loading 5-Day Forecast
-    const dayWiseWeatherAPIResponse = await dayWiseWeatherAPI();
+    const dayWiseWeatherAPIResponse = await dayWiseWeatherAPI(currentWeatherAPIResponse);
     calculateDayWiseForecast(dayWiseWeatherAPIResponse);
     console.log(dayWiseWeatherAPIResponse);
     loadDayWiseForecast(dayWiseWeatherAPIResponse)
@@ -107,6 +113,23 @@ document.addEventListener("DOMContentLoaded", async () => {
     loadTodayHighlight(currentWeatherAPIResponse);
     // Percentage bar
     barProgress(currentWeatherAPIResponse);
+}
+
+// Default latitude and longitude of the user
+const loadForecastUsingGeoLocation = () => {
+    navigator.geolocation.getCurrentPosition(({coords}) => {
+        const { latitude: lat, longitude: lon } = coords;
+        selectedCity = { lat, lon };
+        loadData();
+    }, error => console.log(error));
+}
+
+document.addEventListener("DOMContentLoaded", async () => {
+    // Default Location Forecast
+    loadForecastUsingGeoLocation();
+    // Getting Default Location Forecast through button click
+    const currentLocation = document.querySelector(".current-location");
+    currentLocation.addEventListener("click", loadForecastUsingGeoLocation);
     // For Menu
     function showMenu() {
         const menu = document.querySelector("#search-location-opt");
